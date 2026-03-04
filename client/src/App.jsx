@@ -210,7 +210,7 @@ const FlashpointApp = () => {
 
             {/* Central Main Feed Layout */}
             <main className="feed-container">
-              <div className="p-10 bg-[#0b0f14] border border-[#2d3748] mb-16 shadow-md transition-all duration-300 hover:border-[#fcbb00] hover:shadow-[0_0_15px_rgba(252,187,0,0.15)]">
+              <div className="p-5 md:p-10 bg-[#0b0f14] border border-[#2d3748] mb-16 shadow-md transition-all duration-300 hover:border-[#fcbb00] hover:shadow-[0_0_15px_rgba(252,187,0,0.15)]">
                 <h3 className="flex-icon-text text-sm font-black mono mb-4 text-accent tracking-widest uppercase">
                   <Globe style={{ width: '1.2rem', height: '1.2rem' }} /> <span>Monitoring Advisory</span>
                 </h3>

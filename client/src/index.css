@@ -417,3 +417,39 @@ body {
     transform: scaleX(0);
   }
 }
+
+/* Mobile Responsiveness Quick Fixes */
+@media (max-width: 768px) {
+  .fixed-header {
+    height: auto;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .header-left {
+    min-width: unset;
+    width: 100%;
+  }
+  .header-center {
+    width: 100%;
+    gap: 1.5rem;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+  .header-right {
+    position: absolute;
+    top: 1.15rem;
+    right: 1rem;
+  }
+  .intelligence-tile {
+    padding: 1.25rem;
+  }
+  .content-area {
+    padding: 1.5rem 0.5rem;
+  }
+  .fixed-footer {
+    height: auto;
+    padding: 1rem 0.5rem 2rem 0.5rem;
+  }
+}
