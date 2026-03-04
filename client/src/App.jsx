@@ -160,51 +160,93 @@ const FlashpointApp = () => {
                 Active Telemetry
               </div>
               <div className="widget-sidebar-content">
-                <LiveWidgetFeed
-                  title="FLIGHTRADAR24"
-                  endpoint="https://flashpoint-a7q8.onrender.com/api/flightradar"
-                  icon={<Radio style={{ width: '16px', height: '16px', color: '#ff6a00' }} />}
-                />
-                <LiveWidgetFeed
-                  title="US DEPLOYMENTS"
-                  endpoint="https://flashpoint-a7q8.onrender.com/api/us-deployments"
-                  icon={<Target style={{ width: '16px', height: '16px', color: '#fcbb00' }} />}
-                />
-                <LiveWidgetFeed
-                  title="CYBER & COMMS"
-                  endpoint="https://flashpoint-a7q8.onrender.com/api/cyber-comms"
-                  icon={<Zap style={{ width: '16px', height: '16px', color: '#3080ff' }} />}
-                />
-                <LiveWidgetFeed
-                  title="POLYMARKET"
-                  endpoint="https://flashpoint-a7q8.onrender.com/api/polymarket"
-                  icon={<Activity style={{ width: '16px', height: '16px', color: '#a0aec0' }} />}
-                />
-                <LiveWidgetFeed
-                  title="MARITIME & TRADE"
-                  endpoint="https://flashpoint-a7q8.onrender.com/api/maritime"
-                  icon={<Anchor style={{ width: '16px', height: '16px', color: '#06b6d4' }} />}
-                />
-                <LiveWidgetFeed
-                  title="SATELLITE GEOINT"
-                  endpoint="https://flashpoint-a7q8.onrender.com/api/geoint"
-                  icon={<Eye style={{ width: '16px', height: '16px', color: '#a855f7' }} />}
-                />
-                <LiveWidgetFeed
-                  title="ENERGY MARKETS"
-                  endpoint="https://flashpoint-a7q8.onrender.com/api/energy"
-                  icon={<Flame style={{ width: '16px', height: '16px', color: '#f97316' }} />}
-                />
-                <LiveWidgetFeed
-                  title="IRGC DEPLOYMENTS"
-                  endpoint="https://flashpoint-a7q8.onrender.com/api/irgc-deployments"
-                  icon={<Target style={{ width: '16px', height: '16px', color: '#10b981' }} />}
-                />
-                <LiveWidgetFeed
-                  title="IDF DEPLOYMENTS"
-                  endpoint="https://flashpoint-a7q8.onrender.com/api/idf-deployments"
-                  icon={<Shield style={{ width: '16px', height: '16px', color: '#3b82f6' }} />}
-                />
+                {/* GROUP 1: MILITARY MOVEMENTS */}
+                <div className="flex flex-col gap-2 mr-4">
+                  <span className="mono text-[8px] text-accent opacity-50 mb-1 ml-1">MILITARY MOVEMENTS</span>
+                  <div className="flex flex-col gap-4 lg:gap-4 md:flex-row lg:flex-col">
+                    <LiveWidgetFeed
+                      title="US DEPLOYMENTS"
+                      endpoint="https://flashpoint-a7q8.onrender.com/api/us-deployments"
+                      icon={<Target style={{ width: '16px', height: '16px', color: '#fcbb00' }} />}
+                    />
+                    <LiveWidgetFeed
+                      title="IDF DEPLOYMENTS"
+                      endpoint="https://flashpoint-a7q8.onrender.com/api/idf-deployments"
+                      icon={<Shield style={{ width: '16px', height: '16px', color: '#3b82f6' }} />}
+                    />
+                    <LiveWidgetFeed
+                      title="IRGC DEPLOYMENTS"
+                      endpoint="https://flashpoint-a7q8.onrender.com/api/irgc-deployments"
+                      icon={<Target style={{ width: '16px', height: '16px', color: '#10b981' }} />}
+                    />
+                    <LiveWidgetFeed
+                      title="UK/EU DEPLOYMENTS"
+                      endpoint="https://flashpoint-a7q8.onrender.com/api/uk-eu-deployments"
+                      icon={<Anchor style={{ width: '16px', height: '16px', color: '#3b82f6' }} />}
+                    />
+                  </div>
+                </div>
+
+                {/* GROUP 2: GEOPOLITICS & INTEL */}
+                <div className="flex flex-col gap-2 mr-4 mt-0 lg:mt-6">
+                  <span className="mono text-[8px] text-accent opacity-50 mb-1 ml-1">GEOPOLITICS & INTEL</span>
+                  <div className="flex flex-col gap-4 md:flex-row lg:flex-col">
+                    <LiveWidgetFeed
+                      title="SATELLITE GEOINT"
+                      endpoint="https://flashpoint-a7q8.onrender.com/api/geoint"
+                      icon={<Eye style={{ width: '16px', height: '16px', color: '#a855f7' }} />}
+                    />
+                    <LiveWidgetFeed
+                      title="NUCLEAR ACTIVITY"
+                      endpoint="https://flashpoint-a7q8.onrender.com/api/nuclear"
+                      icon={<AlertTriangle style={{ width: '16px', height: '16px', color: '#ff6a00' }} />}
+                    />
+                    <LiveWidgetFeed
+                      title="GLOBAL PROTESTS"
+                      endpoint="https://flashpoint-a7q8.onrender.com/api/protests"
+                      icon={<Activity style={{ width: '16px', height: '16px', color: '#ef4444' }} />}
+                    />
+                  </div>
+                </div>
+
+                {/* GROUP 3: CYBER & ECONOMICS */}
+                <div className="flex flex-col gap-2 mr-4 mt-0 lg:mt-6">
+                  <span className="mono text-[8px] text-accent opacity-50 mb-1 ml-1">CYBER & ECONOMICS</span>
+                  <div className="flex flex-col gap-4 md:flex-row lg:flex-col">
+                    <LiveWidgetFeed
+                      title="CYBER & COMMS"
+                      endpoint="https://flashpoint-a7q8.onrender.com/api/cyber-comms"
+                      icon={<Zap style={{ width: '16px', height: '16px', color: '#3080ff' }} />}
+                    />
+                    <LiveWidgetFeed
+                      title="ENERGY MARKETS"
+                      endpoint="https://flashpoint-a7q8.onrender.com/api/energy"
+                      icon={<Flame style={{ width: '16px', height: '16px', color: '#f97316' }} />}
+                    />
+                    <LiveWidgetFeed
+                      title="MARITIME & TRADE"
+                      endpoint="https://flashpoint-a7q8.onrender.com/api/maritime"
+                      icon={<Anchor style={{ width: '16px', height: '16px', color: '#06b6d4' }} />}
+                    />
+                    <LiveWidgetFeed
+                      title="POLYMARKET"
+                      endpoint="https://flashpoint-a7q8.onrender.com/api/polymarket"
+                      icon={<Activity style={{ width: '16px', height: '16px', color: '#a0aec0' }} />}
+                    />
+                  </div>
+                </div>
+
+                {/* GROUP 4: LOGISTICS TRACKING */}
+                <div className="flex flex-col gap-2 mt-0 lg:mt-6">
+                  <span className="mono text-[8px] text-accent opacity-50 mb-1 ml-1">LOGISTICS TRACKING</span>
+                  <div className="flex flex-col gap-4 md:flex-row lg:flex-col">
+                    <LiveWidgetFeed
+                      title="FLIGHTRADAR24"
+                      endpoint="https://flashpoint-a7q8.onrender.com/api/flightradar"
+                      icon={<Radio style={{ width: '16px', height: '16px', color: '#ff6a00' }} />}
+                    />
+                  </div>
+                </div>
               </div>
             </aside>
 

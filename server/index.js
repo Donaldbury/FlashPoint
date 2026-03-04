@@ -207,6 +207,36 @@ app.get('/api/idf-deployments', async (req, res) => {
     }
 });
 
+app.get('/api/uk-eu-deployments', async (req, res) => {
+    try {
+        const parser = new (require('rss-parser'))();
+        const feed = await parser.parseURL('https://news.google.com/rss/search?q=when:7d+"royal+navy"+OR+"european+union"+OR+"uk+military"+OR+"foreign+office"+AND+"middle+east"+OR+"red+sea"+OR+"mediterranean"&hl=en-US&gl=US&ceid=US:en');
+        res.json(feed.items);
+    } catch (e) {
+        res.status(500).json({ error: e.message });
+    }
+});
+
+app.get('/api/nuclear', async (req, res) => {
+    try {
+        const parser = new (require('rss-parser'))();
+        const feed = await parser.parseURL('https://news.google.com/rss/search?q=when:7d+"iaea"+OR+"uranium+enrichment"+OR+"nuclear+facility"+AND+"iran"+OR+"israel"&hl=en-US&gl=US&ceid=US:en');
+        res.json(feed.items);
+    } catch (e) {
+        res.status(500).json({ error: e.message });
+    }
+});
+
+app.get('/api/protests', async (req, res) => {
+    try {
+        const parser = new (require('rss-parser'))();
+        const feed = await parser.parseURL('https://news.google.com/rss/search?q=when:3d+"protest"+OR+"protests"+OR+"demonstration"+OR+"riot"+AND+"israel"+OR+"gaza"+OR+"iran"+OR+"university"+OR+"london"&hl=en-US&gl=US&ceid=US:en');
+        res.json(feed.items);
+    } catch (e) {
+        res.status(500).json({ error: e.message });
+    }
+});
+
 const PORT = process.env.PORT || 3001;
 server.listen(PORT, () => {
     console.log(`Flashpoint Server running on port ${PORT}`);
