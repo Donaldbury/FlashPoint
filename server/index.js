@@ -12,6 +12,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Configure shared parser with browser User-Agent to prevent 403/429 blocks
+const Parser = require('rss-parser');
+const customParser = new Parser({
+    headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36' }
+});
+
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
 
@@ -119,8 +125,7 @@ app.get('/api/stats', (req, res) => {
 
 app.get('/api/flightradar', async (req, res) => {
     try {
-        const parser = new (require('rss-parser'))();
-        const feed = await parser.parseURL('https://news.google.com/rss/search?q=flightradar24+middle%20east+OR+iran+OR+israel+OR+lebanon+OR+syria+OR+yemen+OR+iraq+OR+saudi+OR+jordan+OR+egypt&hl=en-US&gl=US&ceid=US:en');
+        const feed = await customParser.parseURL('https://news.google.com/rss/search?q=flightradar24+middle%20east+OR+iran+OR+israel+OR+lebanon+OR+syria+OR+yemen+OR+iraq+OR+saudi+OR+jordan+OR+egypt&hl=en-US&gl=US&ceid=US:en');
         res.json(feed.items);
     } catch (e) {
         res.status(500).json({ error: e.message });
@@ -129,8 +134,7 @@ app.get('/api/flightradar', async (req, res) => {
 
 app.get('/api/polymarket', async (req, res) => {
     try {
-        const parser = new (require('rss-parser'))();
-        const feed = await parser.parseURL('https://news.google.com/rss/search?q=when:24h+polymarket+middle%20east+OR+iran+OR+israel+OR+usa&hl=en-US&gl=US&ceid=US:en');
+        const feed = await customParser.parseURL('https://news.google.com/rss/search?q=when:24h+polymarket+middle%20east+OR+iran+OR+israel+OR+usa&hl=en-US&gl=US&ceid=US:en');
         res.json(feed.items);
     } catch (e) {
         res.status(500).json({ error: e.message });
@@ -139,8 +143,7 @@ app.get('/api/polymarket', async (req, res) => {
 
 app.get('/api/us-deployments', async (req, res) => {
     try {
-        const parser = new (require('rss-parser'))();
-        const feed = await parser.parseURL('https://news.google.com/rss/search?q=when:7d+"us+military"+OR+"us+navy"+OR+centcom+OR+"aircraft+carrier"+AND+"middle+east"+OR+"red+sea"+OR+"mediterranean"+OR+"persian+gulf"&hl=en-US&gl=US&ceid=US:en');
+        const feed = await customParser.parseURL('https://news.google.com/rss/search?q=when:7d+"us+military"+OR+"us+navy"+OR+centcom+OR+"aircraft+carrier"+AND+"middle+east"+OR+"red+sea"+OR+"mediterranean"+OR+"persian+gulf"&hl=en-US&gl=US&ceid=US:en');
         res.json(feed.items);
     } catch (e) {
         res.status(500).json({ error: e.message });
@@ -149,8 +152,7 @@ app.get('/api/us-deployments', async (req, res) => {
 
 app.get('/api/cyber-comms', async (req, res) => {
     try {
-        const parser = new (require('rss-parser'))();
-        const feed = await parser.parseURL('https://news.google.com/rss/search?q=when:7d+cyberattack+OR+"internet+outage"+OR+"gps+jamming"+OR+hackers+AND+"middle+east"+OR+iran+OR+israel+OR+lebanon&hl=en-US&gl=US&ceid=US:en');
+        const feed = await customParser.parseURL('https://news.google.com/rss/search?q=when:7d+cyberattack+OR+"internet+outage"+OR+"gps+jamming"+OR+hackers+AND+"middle+east"+OR+iran+OR+israel+OR+lebanon&hl=en-US&gl=US&ceid=US:en');
         res.json(feed.items);
     } catch (e) {
         res.status(500).json({ error: e.message });
@@ -159,8 +161,7 @@ app.get('/api/cyber-comms', async (req, res) => {
 
 app.get('/api/maritime', async (req, res) => {
     try {
-        const parser = new (require('rss-parser'))();
-        const feed = await parser.parseURL('https://news.google.com/rss/search?q=when:7d+"red+sea"+OR+"strait+of+hormuz"+OR+"suez+canal"+OR+"gulf+of+oman"+AND+tanker+OR+shipping+OR+maritime+OR+houthi+OR+"gps+spoofing"&hl=en-US&gl=US&ceid=US:en');
+        const feed = await customParser.parseURL('https://news.google.com/rss/search?q=when:7d+"red+sea"+OR+"strait+of+hormuz"+OR+"suez+canal"+OR+"gulf+of+oman"+AND+tanker+OR+shipping+OR+maritime+OR+houthi+OR+"gps+spoofing"&hl=en-US&gl=US&ceid=US:en');
         res.json(feed.items);
     } catch (e) {
         res.status(500).json({ error: e.message });
@@ -169,8 +170,7 @@ app.get('/api/maritime', async (req, res) => {
 
 app.get('/api/geoint', async (req, res) => {
     try {
-        const parser = new (require('rss-parser'))();
-        const feed = await parser.parseURL('https://news.google.com/rss/search?q=when:7d+"satellite+imagery"+OR+"maxar"+OR+"planet+labs"+OR+"synthetic+aperture+radar"+AND+"middle+east"+OR+"iran"+OR+"israel"+OR+"lebanon"&hl=en-US&gl=US&ceid=US:en');
+        const feed = await customParser.parseURL('https://news.google.com/rss/search?q=when:7d+"satellite+imagery"+OR+"maxar"+OR+"planet+labs"+OR+"synthetic+aperture+radar"+AND+"middle+east"+OR+"iran"+OR+"israel"+OR+"lebanon"&hl=en-US&gl=US&ceid=US:en');
         res.json(feed.items);
     } catch (e) {
         res.status(500).json({ error: e.message });
@@ -179,8 +179,7 @@ app.get('/api/geoint', async (req, res) => {
 
 app.get('/api/energy', async (req, res) => {
     try {
-        const parser = new (require('rss-parser'))();
-        const feed = await parser.parseURL('https://news.google.com/rss/search?q=when:7d+"brent+crude"+OR+"oil+prices"+OR+"energy+infrastructure"+OR+"saudi+aramco"+OR+"strait+of+hormuz"+AND+"middle+east"+OR+"strike"+OR+"opec"+OR+"iran"&hl=en-US&gl=US&ceid=US:en');
+        const feed = await customParser.parseURL('https://news.google.com/rss/search?q=when:7d+"brent+crude"+OR+"oil+prices"+OR+"energy+infrastructure"+OR+"saudi+aramco"+OR+"strait+of+hormuz"+AND+"middle+east"+OR+"strike"+OR+"opec"+OR+"iran"&hl=en-US&gl=US&ceid=US:en');
         res.json(feed.items);
     } catch (e) {
         res.status(500).json({ error: e.message });
@@ -189,8 +188,7 @@ app.get('/api/energy', async (req, res) => {
 
 app.get('/api/irgc-deployments', async (req, res) => {
     try {
-        const parser = new (require('rss-parser'))();
-        const feed = await parser.parseURL('https://news.google.com/rss/search?q=when:7d+"irgc"+OR+"qods+force"+OR+"khamenei"+OR+"revolutionary+guard"+AND+"deployment"+OR+"missile"+OR+"proxy"+OR+"syria"+OR+"lebanon"+OR+"iraq"&hl=en-US&gl=US&ceid=US:en');
+        const feed = await customParser.parseURL('https://news.google.com/rss/search?q=when:7d+"irgc"+OR+"qods+force"+OR+"khamenei"+OR+"revolutionary+guard"+AND+"deployment"+OR+"missile"+OR+"proxy"+OR+"syria"+OR+"lebanon"+OR+"iraq"&hl=en-US&gl=US&ceid=US:en');
         res.json(feed.items);
     } catch (e) {
         res.status(500).json({ error: e.message });
@@ -199,8 +197,7 @@ app.get('/api/irgc-deployments', async (req, res) => {
 
 app.get('/api/idf-deployments', async (req, res) => {
     try {
-        const parser = new (require('rss-parser'))();
-        const feed = await parser.parseURL('https://news.google.com/rss/search?q=when:7d+"idf"+OR+"israel+defense+forces"+OR+"iaf"+AND+"deployment"+OR+"reserves"+OR+"gaza"+OR+"lebanon"+OR+"northern+command"+OR+"strike"&hl=en-US&gl=US&ceid=US:en');
+        const feed = await customParser.parseURL('https://news.google.com/rss/search?q=when:7d+"idf"+OR+"israel+defense+forces"+OR+"iaf"+AND+"deployment"+OR+"reserves"+OR+"gaza"+OR+"lebanon"+OR+"northern+command"+OR+"strike"&hl=en-US&gl=US&ceid=US:en');
         res.json(feed.items);
     } catch (e) {
         res.status(500).json({ error: e.message });
@@ -209,8 +206,7 @@ app.get('/api/idf-deployments', async (req, res) => {
 
 app.get('/api/uk-eu-deployments', async (req, res) => {
     try {
-        const parser = new (require('rss-parser'))();
-        const feed = await parser.parseURL('https://news.google.com/rss/search?q=when:7d+"royal+navy"+OR+"european+union"+OR+"uk+military"+OR+"foreign+office"+AND+"middle+east"+OR+"red+sea"+OR+"mediterranean"&hl=en-US&gl=US&ceid=US:en');
+        const feed = await customParser.parseURL('https://news.google.com/rss/search?q=when:7d+"royal+navy"+OR+"european+union"+OR+"uk+military"+OR+"foreign+office"+AND+"middle+east"+OR+"red+sea"+OR+"mediterranean"&hl=en-US&gl=US&ceid=US:en');
         res.json(feed.items);
     } catch (e) {
         res.status(500).json({ error: e.message });
@@ -219,8 +215,7 @@ app.get('/api/uk-eu-deployments', async (req, res) => {
 
 app.get('/api/nuclear', async (req, res) => {
     try {
-        const parser = new (require('rss-parser'))();
-        const feed = await parser.parseURL('https://news.google.com/rss/search?q=when:7d+"iaea"+OR+"uranium+enrichment"+OR+"nuclear+facility"+AND+"iran"+OR+"israel"&hl=en-US&gl=US&ceid=US:en');
+        const feed = await customParser.parseURL('https://news.google.com/rss/search?q=when:7d+"iaea"+OR+"uranium+enrichment"+OR+"nuclear+facility"+AND+"iran"+OR+"israel"&hl=en-US&gl=US&ceid=US:en');
         res.json(feed.items);
     } catch (e) {
         res.status(500).json({ error: e.message });
@@ -229,8 +224,7 @@ app.get('/api/nuclear', async (req, res) => {
 
 app.get('/api/protests', async (req, res) => {
     try {
-        const parser = new (require('rss-parser'))();
-        const feed = await parser.parseURL('https://news.google.com/rss/search?q=when:3d+"protest"+OR+"protests"+OR+"demonstration"+OR+"riot"+AND+"israel"+OR+"gaza"+OR+"iran"+OR+"university"+OR+"london"&hl=en-US&gl=US&ceid=US:en');
+        const feed = await customParser.parseURL('https://news.google.com/rss/search?q=when:3d+"protest"+OR+"protests"+OR+"demonstration"+OR+"riot"+AND+"israel"+OR+"gaza"+OR+"iran"+OR+"university"+OR+"london"&hl=en-US&gl=US&ceid=US:en');
         res.json(feed.items);
     } catch (e) {
         res.status(500).json({ error: e.message });

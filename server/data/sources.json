@@ -23,7 +23,7 @@
         "type": "major_media",
         "country": "Israel",
         "language": "English",
-        "rssUrl": "https://www.timesofisrael.com/feed/",
+        "rssUrl": "https://news.google.com/rss/search?q=when:24h+allinurl:timesofisrael.com&hl=en-US&gl=US&ceid=US:en",
         "enabled": true
     },
     {
