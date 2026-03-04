@@ -1,0 +1,83 @@
+[
+    {
+        "id": "bbc-middle-east",
+        "name": "BBC Middle East",
+        "type": "major_media",
+        "country": "UK",
+        "language": "English",
+        "rssUrl": "https://feeds.bbci.co.uk/news/world/middle_east/rss.xml",
+        "enabled": true
+    },
+    {
+        "id": "reuters-world",
+        "name": "Reuters World",
+        "type": "major_media",
+        "country": "USA",
+        "language": "English",
+        "rssUrl": "https://news.google.com/rss/search?q=when:24h+allinurl:reuters.com&hl=en-US&gl=US&ceid=US:en",
+        "enabled": true
+    },
+    {
+        "id": "toi-israel",
+        "name": "Times of Israel",
+        "type": "major_media",
+        "country": "Israel",
+        "language": "English",
+        "rssUrl": "https://www.timesofisrael.com/feed/",
+        "enabled": true
+    },
+    {
+        "id": "iran-intl-en",
+        "name": "Iran International",
+        "type": "major_media",
+        "country": "Iran (London)",
+        "language": "English",
+        "rssUrl": "https://news.google.com/rss/search?q=when:24h+allinurl:iranintl.com&hl=en-US&gl=US&ceid=US:en",
+        "enabled": true
+    },
+    {
+        "id": "bbc-persian",
+        "name": "BBC Persian",
+        "type": "major_media",
+        "country": "UK",
+        "language": "English",
+        "rssUrl": "https://news.google.com/rss/search?q=when:24h+bbc+persian&hl=en-US&gl=US&ceid=US:en",
+        "enabled": true
+    },
+    {
+        "id": "fox-news",
+        "name": "Fox News World",
+        "type": "major_media",
+        "country": "USA",
+        "language": "English",
+        "rssUrl": "https://news.google.com/rss/search?q=when:24h+allinurl:foxnews.com/world&hl=en-US&gl=US&ceid=US:en",
+        "enabled": true
+    },
+    {
+        "id": "cnn-world",
+        "name": "CNN Middle East",
+        "type": "major_media",
+        "country": "USA",
+        "language": "English",
+        "rssUrl": "http://rss.cnn.com/rss/edition_meast.rss",
+        "enabled": true
+    },
+    {
+        "id": "al-jazeera",
+        "name": "Al Jazeera English",
+        "type": "major_media",
+        "country": "Qatar",
+        "language": "English",
+        "rssUrl": "https://news.google.com/rss/search?q=when:24h+allinurl:aljazeera.com&hl=en-US&gl=US&ceid=US:en",
+        "enabled": true
+    },
+    {
+        "id": "idf-official",
+        "name": "IDF Reports",
+        "type": "gov_official",
+        "country": "Israel",
+        "language": "English",
+        "rssUrl": "https://news.google.com/rss/search?q=when:24h+%22idf%22+OR+%22israel+defense+forces%22&hl=en-US&gl=US&ceid=US:en",
+        "enabled": true
+    }
+]
