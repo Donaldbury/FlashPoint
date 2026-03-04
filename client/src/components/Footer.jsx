@@ -16,7 +16,7 @@ const Footer = () => {
             </div>
 
             <div className="flex flex-wrap justify-center gap-x-8 gap-y-2 mono text-[8px] font-black opacity-40 uppercase tracking-[0.2em]">
-                <span>&copy; 2026 CYBER INTEL DEPT</span>
+                <span>&copy; 2026 CYBER INTEL DEPT - Donald Bury</span>
                 <span className="cursor-pointer hover:text-accent transition-colors">Security Protocol v4.0.1 </span>
                 <span className="cursor-pointer hover:text-accent transition-colors">Privacy Declaration</span>
                 <span className="cursor-pointer hover:text-accent transition-colors">Terms of Engagement</span>
