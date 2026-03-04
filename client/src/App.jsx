@@ -32,9 +32,9 @@ const FlashpointApp = () => {
   }, [theme]);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/api/sources').then(res => setSources(res.data));
-    axios.get('http://localhost:3001/api/health').then(res => setHealth(res.data));
-    axios.get('http://localhost:3001/api/stats').then(res => setStats(res.data));
+    axios.get('https://flashpoint-a7q8.onrender.com/api/sources').then(res => setSources(res.data));
+    axios.get('https://flashpoint-a7q8.onrender.com/api/health').then(res => setHealth(res.data));
+    axios.get('https://flashpoint-a7q8.onrender.com/api/stats').then(res => setStats(res.data));
   }, []);
 
   const { data: initialData, isLoading, refetch } = useQuery({
@@ -46,7 +46,7 @@ const FlashpointApp = () => {
       if (filters.tags.length) params.append('tags', filters.tags.join(','));
       if (filters.sources.length) params.append('sources', filters.sources.join(','));
       if (filters.verificationLevel.length) params.append('verificationLevel', filters.verificationLevel.join(','));
-      const res = await axios.get(`http://localhost:3001/api/feed?${params.toString()}`);
+      const res = await axios.get(`https://flashpoint-a7q8.onrender.com/api/feed?${params.toString()}`);
       return res.data;
     },
     enabled: currentPage === 'feed'
@@ -60,7 +60,7 @@ const FlashpointApp = () => {
   }, [initialData, currentPage]);
 
   useEffect(() => {
-    const ws = new WebSocket('ws://localhost:3001');
+    const ws = new WebSocket('wss://flashpoint-a7q8.onrender.com');
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
       if (data.type === 'NEW_ITEM') {
@@ -162,47 +162,47 @@ const FlashpointApp = () => {
               <div className="widget-sidebar-content">
                 <LiveWidgetFeed
                   title="FLIGHTRADAR24"
-                  endpoint="http://localhost:3001/api/flightradar"
+                  endpoint="https://flashpoint-a7q8.onrender.com/api/flightradar"
                   icon={<Radio style={{ width: '16px', height: '16px', color: '#ff6a00' }} />}
                 />
                 <LiveWidgetFeed
                   title="US DEPLOYMENTS"
-                  endpoint="http://localhost:3001/api/us-deployments"
+                  endpoint="https://flashpoint-a7q8.onrender.com/api/us-deployments"
                   icon={<Target style={{ width: '16px', height: '16px', color: '#fcbb00' }} />}
                 />
                 <LiveWidgetFeed
                   title="CYBER & COMMS"
-                  endpoint="http://localhost:3001/api/cyber-comms"
+                  endpoint="https://flashpoint-a7q8.onrender.com/api/cyber-comms"
                   icon={<Zap style={{ width: '16px', height: '16px', color: '#3080ff' }} />}
                 />
                 <LiveWidgetFeed
                   title="POLYMARKET"
-                  endpoint="http://localhost:3001/api/polymarket"
+                  endpoint="https://flashpoint-a7q8.onrender.com/api/polymarket"
                   icon={<Activity style={{ width: '16px', height: '16px', color: '#a0aec0' }} />}
                 />
                 <LiveWidgetFeed
                   title="MARITIME & TRADE"
-                  endpoint="http://localhost:3001/api/maritime"
+                  endpoint="https://flashpoint-a7q8.onrender.com/api/maritime"
                   icon={<Anchor style={{ width: '16px', height: '16px', color: '#06b6d4' }} />}
                 />
                 <LiveWidgetFeed
                   title="SATELLITE GEOINT"
-                  endpoint="http://localhost:3001/api/geoint"
+                  endpoint="https://flashpoint-a7q8.onrender.com/api/geoint"
                   icon={<Eye style={{ width: '16px', height: '16px', color: '#a855f7' }} />}
                 />
                 <LiveWidgetFeed
                   title="ENERGY MARKETS"
-                  endpoint="http://localhost:3001/api/energy"
+                  endpoint="https://flashpoint-a7q8.onrender.com/api/energy"
                   icon={<Flame style={{ width: '16px', height: '16px', color: '#f97316' }} />}
                 />
                 <LiveWidgetFeed
                   title="IRGC DEPLOYMENTS"
-                  endpoint="http://localhost:3001/api/irgc-deployments"
+                  endpoint="https://flashpoint-a7q8.onrender.com/api/irgc-deployments"
                   icon={<Target style={{ width: '16px', height: '16px', color: '#10b981' }} />}
                 />
                 <LiveWidgetFeed
                   title="IDF DEPLOYMENTS"
-                  endpoint="http://localhost:3001/api/idf-deployments"
+                  endpoint="https://flashpoint-a7q8.onrender.com/api/idf-deployments"
                   icon={<Shield style={{ width: '16px', height: '16px', color: '#3b82f6' }} />}
                 />
               </div>
@@ -236,7 +236,7 @@ const FlashpointApp = () => {
                   <button
                     onClick={() => {
                       refetch();
-                      axios.get('http://localhost:3001/api/stats').then(res => setStats(res.data));
+                      axios.get('https://flashpoint-a7q8.onrender.com/api/stats').then(res => setStats(res.data));
                       setNewItemsCount(0);
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                     }}
